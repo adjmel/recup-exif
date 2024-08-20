@@ -18,7 +18,7 @@ This Python script is designed to extract EXIF metadata from an image. EXIF data
 - **Pillow**: Install this library via pip if it is not already installed.
 
   ```bash
-  pip install pillow
+  pip3 install pillow
   ```
 
 ## Usage
@@ -65,3 +65,4 @@ When prompted, enter the path to the image file. The script will display the ext
 - **Image Path**: Ensure that you provide the correct path to the image file when prompted.
 - **Permissions**: Make sure you have the necessary permissions to read the image file.
 
+![Capture d’écran 2024-08-20 à 20 29 18](https://github.com/user-attachments/assets/74a980df-553d-4028-aa1a-6272bfeb4696)
