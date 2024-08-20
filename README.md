@@ -65,10 +65,3 @@ When prompted, enter the path to the image file. The script will display the ext
 - **Image Path**: Ensure that you provide the correct path to the image file when prompted.
 - **Permissions**: Make sure you have the necessary permissions to read the image file.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-Feel free to modify this README to better fit your needs or add any additional information!
