@@ -10,38 +10,34 @@
 #                                                                              #
 # **************************************************************************** #
 
-from PIL import Image
-from PIL.ExifTags import TAGS
+from PIL import Image, ExifTags, UnidentifiedImageError
 
 def extract_exif(image_path):
-    # Ouvre l'image et accède aux métadonnées EXIF
-    image = Image.open(image_path)
-    exif_data = image._getexif()
+    try:
+        image = Image.open(image_path)
+        exif_data = image._getexif()
 
-    # Si l'image ne contient pas de données EXIF, retourne un message approprié
-    if not exif_data:
-        return "Aucune donnée EXIF trouvée."
+        if not exif_data:
+            return "Aucune donnée EXIF trouvée."
 
-    # Dictionnaire pour stocker les métadonnées EXIF
-    exif_info = {}
+        exif_info = {}
+        for tag, value in exif_data.items():
+            tag_name = ExifTags.TAGS.get(tag, tag)
+            exif_info[tag_name] = value
+        return exif_info
 
-    # Parcours des tags EXIF et stockage dans le dictionnaire exif_info
-    for tag, value in exif_data.items():
-        tag_name = TAGS.get(tag, tag)
-        exif_info[tag_name] = value
+    except FileNotFoundError:
+        return "Erreur : Le fichier spécifié n'a pas été trouvé."
+    except Exception as e:
+        return f"Erreur inattendue : {str(e)}"
 
-    return exif_info
-
-# Demander à l'utilisateur de saisir le chemin de l'image
 image_path = input("Veuillez entrer le chemin de l'image: ")
-
-# Extraire les informations EXIF
 exif_info = extract_exif(image_path)
 
-# Afficher les informations EXIF extraites
 if isinstance(exif_info, str):
     print(exif_info)
 else:
     for key, value in exif_info.items():
         print(f"{key}: {value}")
+
 
